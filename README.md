@@ -2,7 +2,9 @@
 Mainly just learning exercises to get more familiar with Unity3D
 
 F-Rigid-Bodies :
-Just me tinkering around with creating a 2D platformer using no Rigid Bodies or Collision detection.  
+Just me tinkering around with creating a 2D platformer without using Rigid Bodies or Collision detection.  
+The project contains 3 scripts:
+Player Script - Handles all player Movement
+World Script - Detects if player is above it and within its sprite bounds on the X-Axis
+Camera Script - Makes the camera follow the player.  There has been 0 effort in this script and just keeps the player at the center of the frame.
 
-Features of this is pretty barebones right now.  I have a square block, and if it's over a rectangle box, it falls until it makes 
-contact.  Like I said really basic.  
