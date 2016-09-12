@@ -89,7 +89,6 @@ public class Player : MonoBehaviour {
 
     void Fall(float worldY)
     {
-        Debug.Log("Player is over something: " + overSomething);
         if (position.y - playerExtents.y != worldY || overSomething == false)
         {
             position.y -= fallSpeed * Time.fixedDeltaTime;
