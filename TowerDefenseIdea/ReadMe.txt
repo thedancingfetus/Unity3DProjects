@@ -1,0 +1,1 @@
+At this point it is just a Drag and Drop simulator.  2 scripts, one attached to the Towers and 1 attached to an empty game object.
