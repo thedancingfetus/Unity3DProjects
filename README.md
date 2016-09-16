@@ -11,5 +11,6 @@ Testing World Angles - A general test script that I attach to game objects to se
 
 Tower Defense Idea :
 Playing around with Drag and Drop interfaces.  Nothing really to this yet.  If you click on a tower it moves with the mouse.  It changes the Z position of the object based on the Y position.  Will add image scaling to create the illusion of things futher in background.
+If you right click on the tower it creates a new instance of the tower.  If you keep the right click down you can move the tower to where you want it placed.  You can only do this to the original tower, since it is a Prefab.  Will be adding a menu that you can create towers from.
 
 
