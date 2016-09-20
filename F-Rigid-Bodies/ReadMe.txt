@@ -5,3 +5,4 @@ Why?  Who knows, I was bored.
 Recent Feature adds:
 * A prefab that has the world script attached that tells the player where it should land.
 * If you rotate platforms on the Z axis, the player character follows the slope.  This is powered by sweet Triangle Math.
+* If platform is rotated, the player rotates to the same angle.

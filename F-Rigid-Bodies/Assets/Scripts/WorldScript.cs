@@ -12,6 +12,7 @@ public class WorldScript : MonoBehaviour {
     float maxRight;
     public float differenceX;
     public float lowestY;
+    public float highestY;
     public float CAngle;
     public float AAngle;
     public float aSide;
@@ -26,24 +27,25 @@ public class WorldScript : MonoBehaviour {
         maxLeft = thisObjectPostion.x - thisObjectExtent.x;
         maxRight = thisObjectPostion.x + thisObjectExtent.x;
         lowestY = thisObjectPostion.y - thisObjectExtent.y;
+        highestY = thisObjectPostion.y + thisObjectExtent.y;
     }
 	
 	// Update is called once per frame
 	void Update () {
         playerPosition = player.GetComponent<Player>().position;
         isJumping = player.GetComponent<Player>().jumping;
-        if (playerPosition.x - playerExtents.x <= thisObjectPostion.x + thisObjectExtent.x && playerPosition.x + playerExtents.x >= thisObjectPostion.x - thisObjectExtent.x && playerPosition.y - playerExtents.y > lowestY && isJumping == false)
+        if (playerPosition.x - playerExtents.x <= thisObjectPostion.x + thisObjectExtent.x && playerPosition.x + playerExtents.x >= thisObjectPostion.x - thisObjectExtent.x && playerPosition.y /*- playerExtents.y*/ > lowestY + aSide && isJumping == false)
         {
             player.GetComponent<Player>().overSomething = true;
             if (GetComponent<Transform>().rotation.eulerAngles.z == 0) //If the is no angle on the platform
             {
-                player.GetComponent<Player>().worldYPositions.Add(thisObjectPostion.y + thisObjectExtent.y);
+                player.GetComponent<Player>().worldYPositions.Add(new Player.platformSettngs() { platformY = (thisObjectPostion.y + thisObjectExtent.y), platformRotation = GetComponent<Transform>().rotation });
             }
             else //If the platform is Tilted
             {
-                player.GetComponent<Player>().worldYPositions.Add(lowestY + CalcAngle());
-            }           
-        } 
+                player.GetComponent<Player>().worldYPositions.Add(new Player.platformSettngs() { platformY = (lowestY + CalcAngle()), platformRotation = GetComponent<Transform>().rotation });
+            }
+        }
     }
 
     float CalcAngle ()  // This method returns the Y position based on the angle of the platform
@@ -62,7 +64,7 @@ public class WorldScript : MonoBehaviour {
             CAngle = 180 - (AAngle + 90);
         }
         aSide = (differenceX * Mathf.Sin(AAngle * Mathf.Deg2Rad)) / Mathf.Sin(CAngle * Mathf.Deg2Rad); //basic formula for getting the height of a triangle. The Mathf.Sin is expecting Radians, so multiplying it by Mathf.Deg2Rad converts the degress to Radians.
-        yHeight = aSide + thisObjectExtent.y;  // Currently just adding the Y extents of the sprite.  Soon I'll by rotating the player and sending the extents based on the angle.
+        yHeight = aSide + playerExtents.y;  
         return yHeight;      
     }
 }
