@@ -7,6 +7,7 @@ public class Player : MonoBehaviour {
     /*  Player Position Variables */
     private SpriteRenderer playerRenderer;
     private Vector3 playerExtents;
+    private Transform playerTransform;
     public Vector3 position;
     public Quaternion rotation;
     private float beforeJumpY;
@@ -46,19 +47,27 @@ public class Player : MonoBehaviour {
 	// Use this for initialization
 	void Start () {                
         playerExtents = playerRenderer.bounds.extents;
-        position = GetComponent<Transform>().position;
-        rotation = GetComponent<Transform>().rotation; 
+        playerTransform = GetComponent<Transform>();
+        position = playerTransform.position;
+        rotation = playerTransform.rotation; 
     }
 	
 	// Update is called once per frame
 	void Update () {
-        GetComponent<Transform>().position = position;
-        GetComponent<Transform>().rotation = rotation;     
+        playerTransform.position = position;
+        playerTransform.rotation = rotation;     
         if(worldYPositions.Count > 0)
         {
             worldYPositions.Sort((x1, x2) => x1.platformY.CompareTo(x2.platformY));
             currentWorldY = worldYPositions.ToArray()[worldYPositions.Count - 1].platformY;
-            rotation = worldYPositions.ToArray()[worldYPositions.Count - 1].platformRotation;
+            if (worldYPositions.ToArray()[worldYPositions.Count - 1].platformRotation.eulerAngles.z == 0)
+            {
+                rotation = worldYPositions.ToArray()[worldYPositions.Count - 1].platformRotation;
+            }            
+        }
+        if (worldYPositions.Count == 0)
+        {
+            overSomething = false;
         }            
         if (Input.GetKey(KeyCode.A))
         {
@@ -77,14 +86,14 @@ public class Player : MonoBehaviour {
             beforeJumpY = position.y;
             jumping = true;
         }
-        if (Input.GetKeyUp(KeyCode.Space) || (position.y >= (beforeJumpY + (jumpMaxHeight/jumpForce)) && jumping == true))
+        if (Input.GetKeyUp(KeyCode.Space) || (position.y >= (beforeJumpY + (jumpMaxHeight/jumpForce)) && jumping == true) || decending == true)
         {
             jumping = false;
-            decending = true;
         }        
         if (jumping == true)
         {
             Jump();
+            rotation.eulerAngles = new Vector3(rotation.eulerAngles.x, rotation.eulerAngles.y, rotation.eulerAngles.z - rotation.eulerAngles.z);
         }
         if (position.y < lowestYPoint)
         {
@@ -106,9 +115,13 @@ public class Player : MonoBehaviour {
         }            
         if (overSomething == true)
         {
+            if (position.y - playerExtents.y < worldY + .5f)
+            {
+                rotation = worldYPositions.ToArray()[worldYPositions.Count - 1].platformRotation;
+            }
             if (position.y - playerExtents.y < worldY)
             {
-                position.y = worldY + playerExtents.y;
+                position.y = worldY + playerExtents.y;                
                 decending = false;
             }
             overSomething = false;
