@@ -33,9 +33,9 @@ public class WorldScript : MonoBehaviour {
     public float maxLeft;
     public float maxRight;
     // End
-    float lowestY;  // the lowest postions of the sprite
-    float highestY; // the hightes position of the sprite
-    float height; // the Y position the platform will send the player.
+    public float lowestY;  // the lowest postions of the sprite
+    public float highestY; // the hightes position of the sprite
+    public float height; // the Y position the platform will send the player.
     // Use this for initialization
     void Start () {
         // Player Varables
@@ -64,7 +64,7 @@ public class WorldScript : MonoBehaviour {
 
         // Set Max Left and Right
         SetSides();
-        height = CalcAngle();
+        //CalcAngle();
     }
 	
 	// Update is called once per frame
@@ -74,38 +74,34 @@ public class WorldScript : MonoBehaviour {
         isJumping = playerScript.jumping;
         if (playerPosition.x - playerExtents.x <= maxRight && playerPosition.x + playerExtents.x >= maxLeft && playerPosition.y /*- playerExtents.y*/ > lowestY + aSide && isJumping == false)
         {
-            height = CalcAngle();
+            Debug.Log("Over Me");
             playerScript.overSomething = true;
+            if (thisTransform.rotation.eulerAngles.z != 0 || thisTransform.rotation.eulerAngles.z != 180)
+            { 
+                CalcAngle();
+            }
             playerScript.worldYPositions.Add(new Player.platformSettngs() { platformY = (lowestY + height), platformRotation = thisTransform.rotation });
         }
     }
 
-    float CalcAngle ()  // This method returns the Y position based on the angle of the platform
+    void CalcAngle ()  // This method returns the Y position based on the angle of the platform
     {
-        float yHeight = 0f;
-        if (thisTransform.rotation.eulerAngles.z == 0 || thisTransform.rotation.eulerAngles.z == 180) //If the is no angle on the platform
-        {
-            maxLeft = thisObjectPostion.x - thisObjectExtent.x;
-            maxRight = thisObjectPostion.x + thisObjectExtent.x;
-            yHeight = (thisObjectExtent.y + thisObjectExtent.y);
-        }
         if (thisTransform.rotation.eulerAngles.z < 180)
         {
             differenceX = playerPosition.x - maxLeft; //sets the bottom line length of the Triangle for when the 90 degree angle is on the left
             AAngle = thisTransform.rotation.eulerAngles.z;
             CAngle = 180 - (AAngle + 90);
             aSide = (differenceX * Mathf.Sin(AAngle * Mathf.Deg2Rad)) / Mathf.Sin(CAngle * Mathf.Deg2Rad); //basic formula for getting the height of a triangle. The Mathf.Sin is expecting Radians, so multiplying it by Mathf.Deg2Rad converts the degress to Radians.
-            yHeight = aSide + playerExtents.y;
+            height = aSide + playerExtents.y;
         }
-        else if (thisTransform.rotation.eulerAngles.z > 180)
+        if (thisTransform.rotation.eulerAngles.z > 180)
         {
             differenceX = (playerPosition.x - maxRight) * -1f; //sets teh bottom line length of the Triangle for when the 90 degree angle is on the left
             AAngle = 360 - thisTransform.rotation.eulerAngles.z; //Subtracts from 360 to get degree of angle Ex: 360 - 335 = 25 degrees
             CAngle = 180 - (AAngle + 90);
             aSide = (differenceX * Mathf.Sin(AAngle * Mathf.Deg2Rad)) / Mathf.Sin(CAngle * Mathf.Deg2Rad); //basic formula for getting the height of a triangle. The Mathf.Sin is expecting Radians, so multiplying it by Mathf.Deg2Rad converts the degress to Radians.
-            yHeight = aSide + playerExtents.y;
-        }        
-        return yHeight;      
+            height = aSide + playerExtents.y;
+        }             
     }
 
     void SetSides ()
@@ -115,7 +111,7 @@ public class WorldScript : MonoBehaviour {
         {
             maxLeft = thisObjectPostion.x - thisObjectExtent.x;
             maxRight = thisObjectPostion.x + thisObjectExtent.x;
-            height = highestY;
+            height = (thisObjectExtent.y + thisObjectExtent.y);
         }
         if (thisTransform.rotation.eulerAngles.z < 180)
         {

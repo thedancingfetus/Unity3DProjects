@@ -103,8 +103,9 @@ public class Player : MonoBehaviour {
         if (jumping == false)
         {
             Fall(currentWorldY);
-        }            
-	}
+        }
+        worldYPositions.Clear();
+    }
 
     void Fall(float worldY)
     {
@@ -126,7 +127,7 @@ public class Player : MonoBehaviour {
             }
             overSomething = false;
         }
-        worldYPositions.Clear();
+        //worldYPositions.Clear();
     }
     void Jump()
     {  
