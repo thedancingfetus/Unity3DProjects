@@ -72,7 +72,7 @@ public class WorldScript : MonoBehaviour {
     {
         playerPosition = playerScript.position;
         isJumping = playerScript.jumping;
-        if (playerPosition.x - playerExtents.x <= maxRight && playerPosition.x + playerExtents.x >= maxLeft && playerPosition.y /*- playerExtents.y*/ > lowestY + aSide && isJumping == false)
+        if (playerPosition.x - playerExtents.x <= maxRight && playerPosition.x + playerExtents.x >= maxLeft && playerPosition.y /*- playerExtents.y*/ > lowestY + aSide/* && isJumping == false*/)
         {
             Debug.Log("Over Me");
             playerScript.overSomething = true;

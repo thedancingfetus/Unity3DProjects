@@ -26,6 +26,8 @@ public class Player : MonoBehaviour {
     public float jumpMaxHeight;
     private float timeJumpPress;
     private float jumpForce;
+    private float jumpTime;
+    private float jumpHangeTime;
     /*     Speed/Max Variables    */
     //public List<float> worldYPositions = new List<float>();     
     public struct platformSettngs  //Platform Y and Roation
@@ -44,6 +46,8 @@ public class Player : MonoBehaviour {
         jumpMaxHeight = 10f;
         lowestYPoint = -25f;
         jumpForce = 1f;
+        jumpTime = 0f;
+        jumpHangeTime = .255f;
     }
 	// Use this for initialization
 	void Start () {                
@@ -95,9 +99,14 @@ public class Player : MonoBehaviour {
             beforeJumpY = position.y;
             jumping = true;
         }
-        if (Input.GetKeyUp(KeyCode.Space) || (position.y >= (beforeJumpY + (jumpMaxHeight/jumpForce)) && jumping == true) || decending == true)
+        if (Input.GetKey(KeyCode.Space) && (position.y >= (beforeJumpY + (jumpMaxHeight / jumpForce))) && jumping == true)
         {
+            jumpTime += Time.deltaTime;
+        }
+        if (Input.GetKeyUp(KeyCode.Space) || decending == true)
+        { 
             jumping = false;
+            jumpTime = 0f;
         }        
         if (jumping == true)
         {
@@ -114,8 +123,8 @@ public class Player : MonoBehaviour {
             Debug.Log("You Died");
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-        if (jumping == false)
-        {
+        if (jumping == false || (position.y < currentWorldY + .5f && beforeJumpY != currentWorldY && (!Input.GetKey(KeyCode.Space) || position.y >= beforeJumpY + jumpMaxHeight))) //If the player is in Hang Time, but close to a platform, 
+        {                                                                                                                                                                          //player lands on the platform.  Or if the player is falling.
             Fall(currentWorldY);
         }
         if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) || jumping == true /*|| decending == true*/)
@@ -150,7 +159,18 @@ public class Player : MonoBehaviour {
         //worldYPositions.Clear();
     }
     void Jump()
-    {  
-        position.y += jumpSpeed * Time.fixedDeltaTime;
+    {
+        if (position.y <= beforeJumpY + jumpMaxHeight)
+        {
+            position.y += jumpSpeed * Time.fixedDeltaTime;
+        }
+        if (jumpTime <= jumpHangeTime)
+        {
+            jumping = true;
+        }
+        else
+        {
+            jumping = false;
+        }
     }
 }
