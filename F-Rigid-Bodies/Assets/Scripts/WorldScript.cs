@@ -92,7 +92,7 @@ public class WorldScript : MonoBehaviour {
             AAngle = thisTransform.rotation.eulerAngles.z;
             CAngle = 180 - (AAngle + 90);
             aSide = (differenceX * Mathf.Sin(AAngle * Mathf.Deg2Rad)) / Mathf.Sin(CAngle * Mathf.Deg2Rad); //basic formula for getting the height of a triangle. The Mathf.Sin is expecting Radians, so multiplying it by Mathf.Deg2Rad converts the degress to Radians.
-            height = aSide + playerExtents.y;
+            height = aSide + (playerExtents.y / 2);
         }
         if (thisTransform.rotation.eulerAngles.z > 180)
         {
@@ -100,7 +100,7 @@ public class WorldScript : MonoBehaviour {
             AAngle = 360 - thisTransform.rotation.eulerAngles.z; //Subtracts from 360 to get degree of angle Ex: 360 - 335 = 25 degrees
             CAngle = 180 - (AAngle + 90);
             aSide = (differenceX * Mathf.Sin(AAngle * Mathf.Deg2Rad)) / Mathf.Sin(CAngle * Mathf.Deg2Rad); //basic formula for getting the height of a triangle. The Mathf.Sin is expecting Radians, so multiplying it by Mathf.Deg2Rad converts the degress to Radians.
-            height = aSide + playerExtents.y;
+            height = aSide + (playerExtents.y / 2);
         }             
     }
 
@@ -111,7 +111,7 @@ public class WorldScript : MonoBehaviour {
         {
             maxLeft = thisObjectPostion.x - thisObjectExtent.x;
             maxRight = thisObjectPostion.x + thisObjectExtent.x;
-            height = (thisObjectExtent.y + thisObjectExtent.y);
+            height = (thisObjectExtent.y + thisObjectExtent.y) / 2;
         }
         if (thisTransform.rotation.eulerAngles.z < 180)
         {

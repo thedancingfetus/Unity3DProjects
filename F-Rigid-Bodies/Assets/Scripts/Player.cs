@@ -10,6 +10,7 @@ public class Player : MonoBehaviour {
     private Transform playerTransform;
     public Vector3 position;
     public Quaternion rotation;
+    public Animator animator;
     private float beforeJumpY;
     /*  Player Position Variables */
     /*     Player State Variables */
@@ -48,6 +49,7 @@ public class Player : MonoBehaviour {
 	void Start () {                
         playerExtents = playerRenderer.bounds.extents;
         playerTransform = GetComponent<Transform>();
+        animator = GetComponent<Animator>();
         position = playerTransform.position;
         rotation = playerTransform.rotation; 
     }
@@ -69,13 +71,20 @@ public class Player : MonoBehaviour {
         {
             overSomething = false;
         }            
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
         {
+            playerRenderer.flipX = true;
             position.x -= moveSpeed * Time.fixedDeltaTime;
+            if (jumping == false && decending == false)
+            {
+                animator.SetBool("running", true);
+            }         
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
         {
-            position.x += moveSpeed * Time.fixedDeltaTime; 
+            playerRenderer.flipX = false;
+            position.x += moveSpeed * Time.fixedDeltaTime;
+            animator.SetBool("running", true);
         }
         if (Input.GetKey(KeyCode.W))
         {
@@ -95,6 +104,11 @@ public class Player : MonoBehaviour {
             Jump();
             rotation.eulerAngles = new Vector3(rotation.eulerAngles.x, rotation.eulerAngles.y, rotation.eulerAngles.z - rotation.eulerAngles.z);
         }
+        if (jumping == true || decending == true)
+        {
+            animator.SetBool("running", false);
+            animator.SetBool("jumping", true);
+        }
         if (position.y < lowestYPoint)
         {
             Debug.Log("You Died");
@@ -104,6 +118,10 @@ public class Player : MonoBehaviour {
         {
             Fall(currentWorldY);
         }
+        if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) || jumping == true /*|| decending == true*/)
+        {
+            animator.SetBool("running", false);
+        }        
         worldYPositions.Clear();
     }
 
@@ -116,13 +134,15 @@ public class Player : MonoBehaviour {
         }            
         if (overSomething == true)
         {
-            if (position.y - playerExtents.y < worldY + .5f)
+            decending = true;
+            if (position.y /*- playerExtents.y*/ < worldY + .5f)
             {
                 rotation = worldYPositions.ToArray()[worldYPositions.Count - 1].platformRotation;
             }
-            if (position.y - playerExtents.y < worldY)
+            if (position.y /*- playerExtents.y*/ < worldY)
             {
-                position.y = worldY + playerExtents.y;                
+                position.y = worldY;// + playerExtents.y; 
+                animator.SetBool("jumping", false);
                 decending = false;
             }
             overSomething = false;

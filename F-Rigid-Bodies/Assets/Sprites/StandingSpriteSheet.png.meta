@@ -1,20 +1,17 @@
 fileFormatVersion: 2
-guid: 4b5a8a0e2598f05449bdf7b1cf577b45
-timeCreated: 1475037038
+guid: 5bf889fff63fb0a429aa06a520c6f584
+timeCreated: 1475034726
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Player_0
-    21300002: Player_1
-    21300004: Player_2
-    21300006: Player_3
-    21300008: Player_4
-    21300010: Player_5
-    21300012: Player_6
+    21300000: StandingSpriteSheet_0
+    21300002: StandingSpriteSheet_2
+    21300004: StandingSpriteSheet_4
+    21300006: StandingSpriteSheet_6
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -60,93 +57,54 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player_0
+      name: StandingSpriteSheet_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 256
-        width: 342
-        height: 86
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Player_1
-      rect:
-        serializedVersion: 2
-        x: 426
-        y: 256
-        width: 257
-        height: 171
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Player_2
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 256
-        width: 256
-        height: 171
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Player_3
-      rect:
-        serializedVersion: 2
-        x: 1109
-        y: 256
-        width: 171
-        height: 171
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Player_4
-      rect:
-        serializedVersion: 2
-        x: 170
         y: 0
-        width: 257
-        height: 171
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 204
+        height: 281
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Player_5
+      name: StandingSpriteSheet_2
       rect:
         serializedVersion: 2
-        x: 512
+        x: 218
         y: 0
-        width: 256
-        height: 171
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 204
+        height: 281
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Player_6
+      name: StandingSpriteSheet_4
       rect:
         serializedVersion: 2
-        x: 853
-        y: 0
-        width: 257
-        height: 171
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 436
+        y: 1
+        width: 204
+        height: 280
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: StandingSpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 1
+        width: 204
+        height: 280
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

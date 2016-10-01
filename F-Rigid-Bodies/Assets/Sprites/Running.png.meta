@@ -1,20 +1,19 @@
 fileFormatVersion: 2
-guid: 4b5a8a0e2598f05449bdf7b1cf577b45
-timeCreated: 1475037038
+guid: c6c7a8b15d4fb3c48a8fc20ac1f264ed
+timeCreated: 1475038036
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Player_0
-    21300002: Player_1
-    21300004: Player_2
-    21300006: Player_3
-    21300008: Player_4
-    21300010: Player_5
-    21300012: Player_6
+    21300000: Running_0
+    21300002: Running_2
+    21300004: Running_4
+    21300006: Running_6
+    21300008: Running_10
+    21300010: Running_11
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -60,93 +59,80 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player_0
+      name: Running_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 256
-        width: 342
-        height: 86
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        y: 3
+        width: 204
+        height: 281
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Player_1
+      name: Running_2
       rect:
         serializedVersion: 2
-        x: 426
-        y: 256
-        width: 257
-        height: 171
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 210
+        y: 2
+        width: 196
+        height: 282
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Player_2
+      name: Running_4
       rect:
         serializedVersion: 2
-        x: 768
-        y: 256
-        width: 256
-        height: 171
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 420
+        y: 2
+        width: 185
+        height: 282
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Player_3
+      name: Running_6
       rect:
         serializedVersion: 2
-        x: 1109
-        y: 256
-        width: 171
-        height: 171
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 631
+        y: 2
+        width: 177
+        height: 282
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Player_4
+      name: Running_10
       rect:
         serializedVersion: 2
-        x: 170
+        x: 843
         y: 0
-        width: 257
-        height: 171
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 181
+        height: 284
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Player_5
+      name: Running_11
       rect:
         serializedVersion: 2
-        x: 512
+        x: 1053
         y: 0
-        width: 256
-        height: 171
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Player_6
-      rect:
-        serializedVersion: 2
-        x: 853
-        y: 0
-        width: 257
-        height: 171
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 192
+        height: 284
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
