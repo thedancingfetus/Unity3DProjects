@@ -36,23 +36,23 @@ public class CameraFollowPlayer : MonoBehaviour {
 	void Update () {
         playerPosition = playerTransform.position;
         ViewLimits();
-        if (playerPosition.y >= lowest)
+        if (playerPosition.y <= lowest)
         {
             thisCameraPosition.y = playerPosition.y + 4f;
         }
-        if (bottom >= lowest && playerPosition.y > bottom + 3f)
+        /*if (playerPosition.y > top - 3f)
         {
             thisCameraPosition.y += script.moveSpeed * Time.fixedDeltaTime;
         }
-        else if (bottom >= lowest && playerPosition.y < bottom + 3f)
+        else*/ if (bottom >= lowest && playerPosition.y < bottom + 3f)
         {
             thisCameraPosition.y -= script.moveSpeed * Time.fixedDeltaTime;
         }
-        if (playerPosition.x < farLeft + 8f)
+        if (playerPosition.x < farLeft + 5f)
         {
             thisCameraPosition.x -= script.moveSpeed * Time.fixedDeltaTime;
         }
-        else if (playerPosition.x > farRight - 8f)
+        else if (playerPosition.x > farRight - 5f)
         {
             thisCameraPosition.x += script.moveSpeed * Time.fixedDeltaTime;
         }
